@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MOOD</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
+      function randomDiap(n, m) {
+        return Math.floor(Math.random() * (m - n + 1)) + n;
+      }
 
-        function randomDiap(n, m) {
-            return Math.floor(Math.random() * (m - n + 1)) + n;
+      function mood(colorsCount) {
+        const colors = [ "", "красный", "оранжевый", "жёлтый", "зелёный", "голубой", "синий", "фиолетовый", ];
+        let used = {};
+        console.log("цветов: " + colorsCount);
+        for (let i = 1; i <= colorsCount; i++) {
+          let n;
+          do {
+            n = randomDiap(1, 7);
+          } while (n in used);
+          used[n] = true;
+          const colorName = colors[n];
+          console.log(colorName);
         }
-    
-        function mood(colorsCount) {
-            const colors=[ '', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый' ];
-            console.log('цветов: ' + colorsCount);
-            let checkColors = colors;
-            for ( let i = 0; i < colorsCount; i++ ) {
-                const n = randomDiap(1, checkColors.length - 1);
-                const colorName = colors[n];
-                checkColors.splice(n, 1);
-                console.log(colorName);
-            }
-        }
-    
-        mood(3);
+      }
+
+      mood(3);
     </script>
-</body>
+  </body>
 </html>
